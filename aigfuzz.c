@@ -453,7 +453,7 @@ main (int argc, char ** argv)
     lit = outputs[--O];
     if (nchoices && opts.version >= 2)
       {
-	switch (choices[aigfuzz_pick (0, nchoices)])
+	switch (choices[aigfuzz_pick (1, nchoices)])
 	  {
 	    case 1:
 	      assert (opts.safety);
@@ -484,13 +484,12 @@ main (int argc, char ** argv)
 	      aiger_add_fairness (model, lit, 0);
 	      break;
 	    default:
-	      aiger_add_output (model, lit, 0);
-	      continue;
+        die("unreachable");
 	  }
 
 	if (aigfuzz_pick (0, 4)) continue;
       }
-    aiger_add_output (model, lit, 0);
+    // aiger_add_output (model, lit, 0);
   }
 
   free (outputs);
